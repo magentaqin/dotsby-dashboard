@@ -1,5 +1,6 @@
 import React from 'react';
 import { Icon, Input, Button, Form } from 'antd';
+import { Link } from 'react-router-dom';
 
 export default class AuthForm extends React.Component {
   handleSubmit = e => {
@@ -14,7 +15,7 @@ export default class AuthForm extends React.Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      <Form onSubmit={this.handleSubmit} style={{ maxWidth: '300px' }}>
+      <Form onSubmit={this.handleSubmit} style={{ minWidth: '360px' }}>
         <Form.Item>
           {getFieldDecorator('username', {
             rules: [{ required: true, message: 'Please input your username!' }],
@@ -37,10 +38,12 @@ export default class AuthForm extends React.Component {
           )}
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
+          <Button type="primary" htmlType="submit" style={{ width: '100%', height: '40px' }}>
             {this.props.submitText}
           </Button>
-          <a href="">{this.props.navToText}</a>
+          <Link to={this.props.navToPath}>
+            <Button type="link" style={{ float: 'right'}}>{this.props.navToText}</Button>
+          </Link>
         </Form.Item>
       </Form>
     );
