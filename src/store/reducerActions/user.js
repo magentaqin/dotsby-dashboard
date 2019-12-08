@@ -16,6 +16,7 @@ const initialState = {
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case setUserInfoActionType:
+      localStorage.setItem('token', action.payload.token);
       return {
         ...state,
         token: action.payload.token,

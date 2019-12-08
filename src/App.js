@@ -21,7 +21,12 @@ class Layout extends React.Component {
   }
 
   componentDidMount(){
-    getUserInfoApi({ token: this.props.token}).then(resp => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.setState({ isLoading: false })
+      return;
+    }
+    getUserInfoApi({ token }).then(resp => {
       this.props.setUserInfo(resp.data.data)
       this.setState({ isLoading: false })
     }).catch(err => {
@@ -48,17 +53,11 @@ class Layout extends React.Component {
   }
 }
 
-const mapStateToProps = (store) => {
-  return {
-    token: store.userReducer.token,
-  }
-}
-
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   setUserInfo,
 }, dispatch)
 
-const ConnectedLayout = connect(mapStateToProps, mapDispatchToProps)(Layout);
+const ConnectedLayout = connect(null, mapDispatchToProps)(Layout);
 
 const App = () => (
   <Provider store={store}>
