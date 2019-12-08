@@ -7,7 +7,7 @@ const client = axios.create({
   baseURL: `${config.apiPrefix}`,
   headers: { 'X-Requested-With': 'XMLHttpRequest', 'Content-Type': 'application/json' },
   responseType: 'json',
-  timeout: 20000,
+  timeout: 3000,
 })
 
 const request = (url, method, data, headerData = {}) => {
@@ -59,5 +59,10 @@ export const signupApi = async(query) => {
 
 export const loginApi = async(query) => {
   const resp = await http.post('/user/login', query);
+  return resp;
+}
+
+export const getUserInfoApi = async(query) => {
+  const resp = await http.get('/user/info', query);
   return resp;
 }
