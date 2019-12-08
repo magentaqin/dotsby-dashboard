@@ -8,7 +8,8 @@ export const setUserInfo = (userInfo) => ({
 
 const initialState = {
   token: '',
-  email: ''
+  email: '',
+  hasAuth: false,
 }
 
 
@@ -19,6 +20,7 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         token: action.payload.token,
         email: action.payload.email,
+        hasAuth: true,
       }
     default:
       return state;
