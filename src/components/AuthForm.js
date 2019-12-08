@@ -15,20 +15,26 @@ export default class AuthForm extends React.Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      <Form onSubmit={this.handleSubmit} style={{ minWidth: '360px' }}>
+      <Form onSubmit={this.handleSubmit} style={{ minWidth: '360px', maxWidth: '360px' }}>
         <Form.Item>
-          {getFieldDecorator('username', {
-            rules: [{ required: true, message: 'Please input your username!' }],
+          {getFieldDecorator('email', {
+            rules: [
+              { required: true, message: 'Please input your email.' },
+              { type: 'email', message: 'Invalid email format'},
+            ],
           })(
             <Input
               prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-              placeholder="Username"
+              placeholder="Email"
             />,
           )}
         </Form.Item>
         <Form.Item>
           {getFieldDecorator('password', {
-            rules: [{ required: true, message: 'Please input your Password!' }],
+            rules: [
+              { required: true, message: 'Please input your password.' },
+              { pattern: /^[a-zA-Z0-9]{6,20}$/, message: 'Only letters and numbers are allowed. Must have 6-20 charaters.'}
+            ],
           })(
             <Input
               prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
