@@ -43,9 +43,9 @@ class Layout extends React.Component {
     return (
       <Router history={history}>
         <Switch>
-          <PublicRoute path="/signup" component={Signup} />
-          <PublicRoute path="/login" component={Login} />
-          <PrivateRoute path="/dashboard" component={Dashboard} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/login" component={Login} />
+          <Route path="/dashboard" component={Dashboard} />
           <Redirect to="/signup" />
         </Switch>
       </Router>
