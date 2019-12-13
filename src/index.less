@@ -59,7 +59,6 @@ body {
     .add-button-container {
       display: flex;
       justify-content: center;
-      // align-items: center;
       padding: 24px 0;
 
       .add-button-inner-wrapper {
@@ -80,7 +79,36 @@ body {
           border: 0;
         }
       }
+    }
 
+    .docs-list-container {
+      display: flex;
+      justify-content: center;
+      .docs-list-inner-wrapper {
+        min-width: 960px;
+        li {
+          .ant-card {
+            width: 250px;
+
+            .ant-card-body {
+              padding: 0;
+              padding-bottom: 16px;
+              .card-bottom {
+                padding: 0 16px;
+
+                .card-info {
+                  display: flex;
+                  justify-content: space-between;
+                  margin-top: 8px;
+                  p {
+                    font-size: 12px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

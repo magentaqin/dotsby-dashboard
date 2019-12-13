@@ -7,7 +7,15 @@ export const setDocsList = (docs) => ({
 
 
 const initialState = {
-  docsList: []
+  docsList: [
+    {
+      id: 1,
+      title: 'Dotsby Docs',
+      created_at: '2019-12-13',
+      updated_at: '2019-12-13',
+      is_private: false,
+    }
+  ]
 }
 
 
