@@ -21,24 +21,24 @@ class Layout extends React.Component {
   }
 
   componentDidMount(){
-    const token = localStorage.getItem('token');
-    if (!token) {
-      this.setState({ isLoading: false })
-      return;
-    }
-    getUserInfoApi({ token }).then(resp => {
-      this.props.setUserInfo(resp.data.data)
-      this.setState({ isLoading: false })
-    }).catch(err => {
-      console.log('get user info err', err)
-      this.setState({ isLoading: false })
-    })
+    // const token = localStorage.getItem('token');
+    // if (!token) {
+    //   this.setState({ isLoading: false })
+    //   return;
+    // }
+    // getUserInfoApi({ token }).then(resp => {
+    //   this.props.setUserInfo(resp.data.data)
+    //   this.setState({ isLoading: false })
+    // }).catch(err => {
+    //   console.log('get user info err', err)
+    //   this.setState({ isLoading: false })
+    // })
   }
 
   render() {
-    if (this.state.isLoading) {
-      return <h1>Loading...</h1>;
-    }
+    // if (this.state.isLoading) {
+    //   return <h1>Loading...</h1>;
+    // }
 
     return (
       <Router history={history}>
