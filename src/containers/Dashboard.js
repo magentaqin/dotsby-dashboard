@@ -1,11 +1,10 @@
 import React from 'react';
-import { Icon, Button, Card } from 'antd';
+import { Icon, Button, Card, message } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-import { setDocsList } from '../store/reducerActions/docs';
-
-import docBackground from '../assets/doc-background.svg';
+import { setDocsList } from '@src/store/reducerActions/docs';
 
 class Dashboard extends React.Component {
   renderList = () => {
@@ -14,7 +13,11 @@ class Dashboard extends React.Component {
         <li key={item.id}>
           <Card>
             <div>
-              <img src={docBackground} alt="doc-background"/>
+              <div className="card-core">
+                <CopyToClipboard text="hello world" onCopy={() => message.success('Copied!')}>
+                  <Button id="copy-button">Copy Meta Info</Button>
+                </CopyToClipboard>
+              </div>
               <div className="card-bottom">
                 <h6>{item.title}</h6>
                 <div className="card-info">
