@@ -1,4 +1,5 @@
-const { override, fixBabelImports, addLessLoader } = require('customize-cra');
+const { override, fixBabelImports, addLessLoader, addWebpackAlias } = require('customize-cra');
+const path = require('path')
 
 module.exports = override(
   fixBabelImports('import', {
@@ -9,5 +10,8 @@ module.exports = override(
   addLessLoader({
     javascriptEnabled: true,
     modifyVars: { '@primary-color': '#3f20ba' },
+  }),
+  addWebpackAlias({
+    '@src': path.resolve(__dirname, './src')
   })
 )

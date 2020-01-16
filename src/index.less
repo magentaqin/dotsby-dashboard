@@ -89,12 +89,42 @@ body {
         li {
           .ant-card {
             width: 250px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
 
             .ant-card-body {
               padding: 0;
-              padding-bottom: 16px;
+
+              .card-core {
+                overflow: hidden;
+                height: 150px;
+                border-radius: 5px;
+                background: url('./assets/doc-background.svg');
+                background-size: 100% auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                #copy-button {
+                  visibility: hidden;
+                  transition: visibility 0.1s ease-in-out;
+                }
+
+                .ant-btn {
+                  background:#5b6b73;
+                  border-radius: 0;
+
+                  &:hover {
+                    background: #3f20ba;
+                  }
+                  span {
+                    color: #fff;
+                  }
+                }
+
+              }
               .card-bottom {
-                padding: 0 16px;
+                padding: 8px 16px;
 
                 .card-info {
                   display: flex;
@@ -103,6 +133,20 @@ body {
                   p {
                     font-size: 12px;
                   }
+                }
+              }
+
+              &:hover {
+                box-shadow: 0 12px 16px 0 rgba(65,80,88,0.16);
+                transition: box-shadow 0.1s ease-in-out;
+
+                .card-core {
+                  background: #5b6b73;
+                }
+
+                #copy-button {
+                  visibility: visible;
+                  transition: visibility 0.1s ease-in-out;
                 }
               }
             }
