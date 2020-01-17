@@ -56,13 +56,12 @@ export const signupApi = async(query) => {
   return resp;
 }
 
-
 export const loginApi = async(query) => {
   const resp = await http.post('/user/login', query);
   return resp;
 }
 
-export const getUserInfoApi = async(query) => {
-  const resp = await http.get('/user/info', query);
+export const getUserInfoApi = async(token) => {
+  const resp = await http.get('/user/info', {}, { Authorization: token });
   return resp;
 }

@@ -1,5 +1,6 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { Icon, Button, Card, message } from 'antd';
+import { Icon, Button, Card, message, Menu, Dropdown } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -31,15 +32,29 @@ class Dashboard extends React.Component {
       )
     })
   }
+
+  renderMenu = () => {
+    return (
+      <Menu>
+        <Menu.Item>
+          Log out
+        </Menu.Item>
+      </Menu>
+    )
+  }
+
   render() {
     return (
       <div className="dashboard-container">
         <div className="top-bar">
           <div className="top-inner-wrapper">
             <h3>Dotsby Dashboard</h3>
-            <div>
-              <p>hello@gmail.com</p>
-            </div>
+            <Dropdown overlay={this.renderMenu()} placement="bottomCenter" trigger={['click']}>
+              <a className="antd-dropdown-link" href="#">
+                {this.props.email}
+                <Icon type="down" />
+              </a>
+            </Dropdown>
           </div>
         </div>
         <div className="add-button-container">
@@ -61,6 +76,7 @@ class Dashboard extends React.Component {
 const mapStateToProps = (state) => {
   return {
     docsList: state.docsReducer.docsList,
+    email: state.userReducer.email,
   }
 }
 

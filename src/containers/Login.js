@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form } from 'antd';
+import { Form, message } from 'antd';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -18,6 +18,7 @@ const LoginPage = (props) => {
       props.history.push('/dashboard')
     }).catch(err => {
       console.log('login err', err);
+      message.error(err.data.message)
     })
   }
 
