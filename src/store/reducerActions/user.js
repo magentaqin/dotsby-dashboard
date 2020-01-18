@@ -29,6 +29,7 @@ export const userReducer = (state = initialState, action) => {
         hasAuth: true,
       }
     case initUserInfoActionType:
+      localStorage.clear('token');
       return initialState;
     default:
       return state;

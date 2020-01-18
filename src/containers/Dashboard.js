@@ -6,10 +6,18 @@ import { bindActionCreators } from 'redux';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import { setDocsList } from '@src/store/reducerActions/docs';
-import { logoutApi } from '@src/service/request';
+import { logoutApi, listDocsApi } from '@src/service/request';
 import { initUserInfo } from '@src/store/reducerActions/user';
 
 class Dashboard extends React.Component {
+
+  componentDidMount() {
+    listDocsApi(this.props.token).then((resp) => {
+      this.props.setDocsList(resp.data.data);
+    }).catch(err => {
+
+    })
+  }
 
   logout = () => {
     logoutApi(this.props.token).then(() => {

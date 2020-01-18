@@ -7,15 +7,7 @@ export const setDocsList = (docs) => ({
 
 
 const initialState = {
-  docsList: [
-    {
-      id: 1,
-      title: 'Dotsby Docs',
-      created_at: '2019-12-13',
-      updated_at: '2019-12-13',
-      is_private: false,
-    }
-  ]
+  docsList: []
 }
 
 
@@ -24,7 +16,7 @@ export const docsReducer = (state = initialState, action) => {
     case setDocsListActionType:
       return {
         ...state,
-        docsList: [...state.docsList, ...action.payload]
+        docsList: action.payload
       }
     default:
       return state;

@@ -70,3 +70,8 @@ export const logoutApi =  async(token) => {
   const resp = await http.post('/user/logout', {}, { Authorization: token });
   return resp;
 }
+
+export const listDocsApi = async(token) => {
+  const resp = await http.get('/document/list', {}, { Authorization: token });
+  return resp;
+}
