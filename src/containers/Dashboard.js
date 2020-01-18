@@ -6,8 +6,19 @@ import { bindActionCreators } from 'redux';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import { setDocsList } from '@src/store/reducerActions/docs';
+import { logoutApi } from '@src/service/request';
+import { initUserInfo } from '@src/store/reducerActions/user';
 
 class Dashboard extends React.Component {
+
+  logout = () => {
+    logoutApi(this.props.token).then(() => {
+      this.props.initUserInfo()
+    }).catch(err => {
+      console.log(err)
+    })
+  }
+
   renderList = () => {
     return this.props.docsList.map(item => {
       return (
@@ -36,7 +47,7 @@ class Dashboard extends React.Component {
   renderMenu = () => {
     return (
       <Menu>
-        <Menu.Item>
+        <Menu.Item onClick={this.logout}>
           Log out
         </Menu.Item>
       </Menu>
@@ -77,11 +88,13 @@ const mapStateToProps = (state) => {
   return {
     docsList: state.docsReducer.docsList,
     email: state.userReducer.email,
+    token: state.userReducer.token,
   }
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   setDocsList,
+  initUserInfo,
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

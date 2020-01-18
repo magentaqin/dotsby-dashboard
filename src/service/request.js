@@ -65,3 +65,8 @@ export const getUserInfoApi = async(token) => {
   const resp = await http.get('/user/info', {}, { Authorization: token });
   return resp;
 }
+
+export const logoutApi =  async(token) => {
+  const resp = await http.post('/user/logout', {}, { Authorization: token });
+  return resp;
+}

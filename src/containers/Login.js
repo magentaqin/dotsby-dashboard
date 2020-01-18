@@ -13,7 +13,6 @@ const WrappedAuthForm = Form.create({ name: 'signup' })(AuthForm);
 const LoginPage = (props) => {
   const onLogin = (values) => {
     loginApi(values).then(resp => {
-      console.log(resp)
       props.setUserInfo(resp.data.data)
       props.history.push('/dashboard')
     }).catch(err => {

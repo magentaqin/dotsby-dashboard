@@ -1,8 +1,13 @@
 const setUserInfoActionType = 'USER/SET_USER'
+const initUserInfoActionType = 'USER/INIT_USER'
 
 export const setUserInfo = (userInfo) => ({
   type: setUserInfoActionType,
   payload: userInfo,
+})
+
+export const initUserInfo = () => ({
+  type: initUserInfoActionType
 })
 
 
@@ -23,6 +28,8 @@ export const userReducer = (state = initialState, action) => {
         email: action.payload.email,
         hasAuth: true,
       }
+    case initUserInfoActionType:
+      return initialState;
     default:
       return state;
   }
