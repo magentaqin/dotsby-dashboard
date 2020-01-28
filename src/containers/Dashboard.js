@@ -30,7 +30,7 @@ class Dashboard extends React.Component {
   renderList = () => {
     return this.props.docsList.map(item => {
       return (
-        <li key={item.id}>
+        <li key={item.document_id}>
           <Card>
             <div>
               <div className="card-core">

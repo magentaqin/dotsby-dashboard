@@ -86,7 +86,18 @@ body {
       justify-content: center;
       .docs-list-inner-wrapper {
         min-width: 960px;
+        max-width: 960px;
+        display: flex;
+        flex-wrap: wrap;
+
         li {
+          margin-bottom: 24px;
+          margin-right: 105px;
+
+          &:nth-of-type(3n) {
+            margin-right: 0;
+          }
+
           .ant-card {
             width: 250px;
             border: 1px solid #ddd;
