@@ -75,3 +75,8 @@ export const listDocsApi = async(token) => {
   const resp = await http.get('/document/list', {}, { Authorization: token });
   return resp;
 }
+
+export const createDocApi = async(data, token) => {
+  const resp = await http.post('/document/create', data, { Authorization: token});
+  return resp;
+}

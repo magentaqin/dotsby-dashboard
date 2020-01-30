@@ -1,17 +1,25 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { Icon, Button, Card, message, Menu, Dropdown } from 'antd';
+import { Icon, Button, Card, message, Menu, Dropdown, Modal } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
+import NewDocForm from '@src/components/NewDocForm';
 import { setDocsList } from '@src/store/reducerActions/docs';
-import { logoutApi, listDocsApi } from '@src/service/request';
+import { logoutApi, listDocsApi, createDocApi } from '@src/service/request';
 import { initUserInfo } from '@src/store/reducerActions/user';
 
 class Dashboard extends React.Component {
+  state = {
+    visible: false,
+  }
 
   componentDidMount() {
+    this.listDocs();
+  }
+
+  listDocs = () => {
     listDocsApi(this.props.token).then((resp) => {
       this.props.setDocsList(resp.data.data);
     }).catch(err => {
@@ -62,6 +70,30 @@ class Dashboard extends React.Component {
     )
   }
 
+  createDocument = () => {
+   if (this.formRef) {
+     this.formRef.props.form.validateFields((err, values) => {
+      if (!err) {
+        console.log('Received values of form: ', values);
+        createDocApi(values, this.props.token).then(() => {
+          this.closeModal();
+          this.listDocs();
+        }).catch(err => {
+
+        })
+      }
+    });
+   }
+  }
+
+  closeModal = () => {
+    this.setState({ visible: false })
+  }
+
+  showModal = () => {
+    this.setState({ visible: true })
+  }
+
   render() {
     return (
       <div className="dashboard-container">
@@ -78,10 +110,18 @@ class Dashboard extends React.Component {
         </div>
         <div className="add-button-container">
           <div className="add-button-inner-wrapper">
-            <Button type="primary">
+            <Button type="primary" onClick={this.showModal}>
               <Icon type="plus" />
               Create New Document
             </Button>
+            <Modal
+              title="Create New Document"
+              visible={this.state.visible}
+              onOk={this.createDocument}
+              onCancel={this.closeModal}
+            >
+             <NewDocForm wrappedComponentRef={(instance) => this.formRef = instance}/>
+            </Modal>
           </div>
         </div>
         <div className="docs-list-container">
