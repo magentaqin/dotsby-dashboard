@@ -35,6 +35,10 @@ class Dashboard extends React.Component {
     })
   }
 
+  navToDoc = () => {
+    window.open(`http://localhost:3001/1234?version=0.1.0`, '_blank')
+  }
+
   renderList = () => {
     return this.props.docsList.map(item => {
     const text =
@@ -52,7 +56,9 @@ class Dashboard extends React.Component {
             <div>
               <div className="card-core">
                 {item.is_published ? (
-                  <Button id="preview-button"><Icon type="play-circle" />Preview Api Doc</Button>
+                  <Button id="preview-button" onClick={this.navToDoc}>
+                    <Icon type="play-circle" />Preview Api Doc
+                  </Button>
                 ) : (
                   <CopyToClipboard text={text} onCopy={() => message.success('Copied!')}>
                     <Tooltip placement="top" title="You can copy this config template into your config.js file.">
