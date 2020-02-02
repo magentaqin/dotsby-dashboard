@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { Icon, Button, Card, message, Menu, Dropdown, Modal } from 'antd';
+import { Icon, Button, Card, message, Menu, Dropdown, Modal, Tooltip } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -12,7 +12,7 @@ import { initUserInfo } from '@src/store/reducerActions/user';
 
 class Dashboard extends React.Component {
   state = {
-    visible: false,
+    visible: false
   }
 
   componentDidMount() {
@@ -37,16 +37,27 @@ class Dashboard extends React.Component {
 
   renderList = () => {
     return this.props.docsList.map(item => {
+    const text =
+`const config = {
+  title: "${item.title}",
+  version: "${item.version}",
+  document_id: "${item.document_id}",
+  token: "${this.props.token}",
+  sections: [],
+};`;
+
       return (
         <li key={item.document_id}>
           <Card>
             <div>
               <div className="card-core">
                 {item.is_published ? (
-                  <Button id="preview-button">Preview Api Doc</Button>
+                  <Button id="preview-button"><Icon type="play-circle" />Preview Api Doc</Button>
                 ) : (
-                  <CopyToClipboard text="hello world" onCopy={() => message.success('Copied!')}>
-                    <Button id="copy-button">Copy Meta Info</Button>
+                  <CopyToClipboard text={text} onCopy={() => message.success('Copied!')}>
+                    <Tooltip placement="top" title="You can copy this config template into your config.js file.">
+                      <Button id="copy-button">Copy Config Template</Button>
+                    </Tooltip>
                   </CopyToClipboard>
                 )}
               </div>
