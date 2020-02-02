@@ -42,9 +42,13 @@ class Dashboard extends React.Component {
           <Card>
             <div>
               <div className="card-core">
-                <CopyToClipboard text="hello world" onCopy={() => message.success('Copied!')}>
-                  <Button id="copy-button">Copy Meta Info</Button>
-                </CopyToClipboard>
+                {item.is_published ? (
+                  <Button id="preview-button">Preview Api Doc</Button>
+                ) : (
+                  <CopyToClipboard text="hello world" onCopy={() => message.success('Copied!')}>
+                    <Button id="copy-button">Copy Meta Info</Button>
+                  </CopyToClipboard>
+                )}
               </div>
               <div className="card-bottom">
                 <h6>{item.title}</h6>
