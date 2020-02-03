@@ -35,8 +35,8 @@ class Dashboard extends React.Component {
     })
   }
 
-  navToDoc = () => {
-    window.open(`http://localhost:3001/1234?version=0.1.0`, '_blank')
+  navToDoc = (document_id, version) => {
+    window.open(`http://localhost:3001/${document_id}?version=${version}`, '_blank')
   }
 
   renderList = () => {
@@ -56,7 +56,7 @@ class Dashboard extends React.Component {
             <div>
               <div className="card-core">
                 {item.is_published ? (
-                  <Button id="preview-button" onClick={this.navToDoc}>
+                  <Button id="preview-button" onClick={() => this.navToDoc(item.document_id, item.version)}>
                     <Icon type="play-circle" />Preview Api Doc
                   </Button>
                 ) : (
