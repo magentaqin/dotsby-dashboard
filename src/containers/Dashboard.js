@@ -43,10 +43,11 @@ class Dashboard extends React.Component {
     return this.props.docsList.map(item => {
     const text =
 `const config = {
-  title: "${item.title}",
-  version: "${item.version}",
-  document_id: "${item.document_id}",
-  token: "${this.props.token}",
+  title: '${item.title}',
+  version: '${item.version}',
+  document_id: '${item.document_id}',
+  token: '${this.props.token}',
+  raml_file: 'api.raml',
   sections: [],
 };`;
 
