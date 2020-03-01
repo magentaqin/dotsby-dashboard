@@ -1,7 +1,9 @@
+const { env } = process;
+
 const config = {
   apiPrefix: '/api/v1',
   port: {
-    server: 4000,
+    server: env.SERVER_PORT ? env.SERVER_PORT : 4000,
   },
 }
 
