@@ -2,5 +2,5 @@
 *
 
 # Only include static files and nginx config file
-!./dist/**
+!./build/**
 !./nginx-server.conf
