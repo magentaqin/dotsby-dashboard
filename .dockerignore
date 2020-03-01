@@ -1,0 +1,6 @@
+# Ignore everything
+*
+
+# Only include static files and nginx config file
+!./dist/**
+!./nginx-server.conf
