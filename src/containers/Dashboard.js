@@ -46,10 +46,12 @@ class Dashboard extends React.Component {
   title: '${item.title}',
   version: '${item.version}',
   document_id: '${item.document_id}',
-  token: '${this.props.token}',
   raml_file: 'api.raml',
   sections: [],
-};`;
+};
+
+module.exports = config;
+`;
 
       return (
         <li key={item.document_id}>
@@ -147,7 +149,10 @@ class Dashboard extends React.Component {
           </div>
         </div>
         <div className="docs-list-container">
-          <ul className="docs-list-inner-wrapper">{this.renderList()}</ul>
+          {this.props.docsList.length ? (
+            <ul className="docs-list-inner-wrapper">{this.renderList()}</ul>
+          ) : <h1 id="create-first-project">Create your first api doc!</h1>
+          }
         </div>
       </div>
     )
