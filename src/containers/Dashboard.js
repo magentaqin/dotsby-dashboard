@@ -36,7 +36,12 @@ class Dashboard extends React.Component {
   }
 
   navToDoc = (document_id, version) => {
-    window.open(`http://localhost:3001/${document_id}?version=${version}`, '_blank')
+    let url = 'localhost:3001'
+    if (process.env.NODE_ENV === 'production') {
+      url = 'docs.dotsby.cn'
+    }
+
+    window.open(`http://${url}/${document_id}?version=${version}`, '_blank')
   }
 
   renderList = () => {
