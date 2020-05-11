@@ -45,7 +45,12 @@ export default class AuthForm extends React.Component {
           )}
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" style={{ width: '100%', height: '40px' }}>
+          <Button
+            type="primary"
+            htmlType="submit"
+            style={{ width: '100%', height: '40px' }}
+            loading={this.props.loading}
+          >
             {this.props.submitText}
           </Button>
           <Link to={this.props.navToPath}>

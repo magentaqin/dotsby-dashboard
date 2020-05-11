@@ -29,9 +29,11 @@ class Dashboard extends React.Component {
 
   logout = () => {
     logoutApi(this.props.token).then(() => {
+      message.success('Successfully logged out.')
       this.props.initUserInfo()
     }).catch(err => {
       console.log(err)
+      message.error(err.data.message)
     })
   }
 
